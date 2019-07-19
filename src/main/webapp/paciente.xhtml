@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPrincipal">Cadastro de Pacientes</ui:define>
+	<ui:define name="tituloSecundario">Insira os Dados do Paciente</ui:define>
+
+
+	<ui:define name="botoesAcao">
+		<p:commandButton value="Salvar"
+			action="#{servicoPacienteBean.cadastrarPaciente()}" update="@form" />
+	</ui:define>
+
+
+	<ui:define name="conteudo">
+
+		<p:panelGrid columns="3">
+			
+			<p:outputLabel for="n1" value="Nome: "/>
+			<p:inputText id="n1" value="#{servicoPacienteBean.cadastroPaciente.nome}"/>
+			<p:message for="n1"/>
+			
+			<p:outputLabel for="n2" value="Idade: "/>
+			<p:inputText id="n2" value="#{servicoPacienteBean.cadastroPaciente.idade}"/>
+			<p:message for="n2"/>
+			
+			<p:outputLabel for="n3" value="CPF: "/>
+			<p:inputMask mask="999.999.999-99" id="n3" value="#{servicoPacienteBean.cadastroPaciente.cpf}"/>
+			<p:message for="n3"/>
+			
+			<p:outputLabel for="n4" value="Sexo: "/>
+			<p:selectOneRadio id="n4" value="#{servicoPacienteBean.cadastroPaciente.sexo}">
+			<f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+			<f:selectItem itemLabel="Feminino" itemValue="Feminino"/>
+			</p:selectOneRadio>
+			<p:message for="n4"/>
+			
+			<p:outputLabel for="n5" value="Data da Internação"/>
+			<p:calendar locale="pt" pattern="dd/MM/yyyy HH:mm" id="n5" value="#{servicoPacienteBean.cadastroPaciente.dataDeInternacao}"/>
+			<p:message for="n5"/>
+		
+		</p:panelGrid>
+
+	</ui:define>
+
+</ui:composition>
+</html>
